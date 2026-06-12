@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>聯絡我們 | GD moto</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+        .contact-form {
+            background: var(--card-bg);
+            padding: 2.5rem;
+            border-radius: 8px;
+            border: 1px solid #333;
+        }
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--silver);
+        }
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            background: #000;
+            border: 1px solid #444;
+            color: white;
+            border-radius: 4px;
+        }
+        .form-group input:focus, .form-group textarea:focus {
+            border-color: var(--primary-red);
+            outline: none;
+        }
+        @media (max-width: 768px) {
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body class="carbon-bg">
+    <nav>
+        <a href="../index.html" class="logo racing-font">
+            <span style="color: white; background: var(--primary-red); padding: 0 5px;">GD</span> MOTO
+        </a>
+        <ul class="nav-links">
+            <li><a href="../index.html">首頁</a></li>
+            <li><a href="about.html">公司簡介</a></li>
+            <li><a href="category.html?type=all">商品瀏覽</a></li>
+            <li><a href="contact.html" style="color: var(--primary-red);">聯絡我們</a></li>
+        </ul>
+    </nav>
+
+    <section class="section">
+        <h1 class="section-title">聯絡我們</h1>
+        <div class="contact-container" style="max-width: 1000px; margin: 0 auto;">
+            <div class="contact-form">
+                <form onsubmit="event.preventDefault(); alert('訊息已送出，我們將儘快聯絡您！');">
+                    <div class="form-group">
+                        <label>姓名</label>
+                        <input type="text" placeholder="您的姓名" required>
+                    </div>
+                    <div class="form-group">
+                        <label>電子郵件</label>
+                        <input type="email" placeholder="example@gmail.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label>諮詢類別</label>
+                        <select style="width: 100%; padding: 0.8rem; background: #000; border: 1px solid #444; color: white;">
+                            <option>產品諮詢</option>
+                            <option>維修預約</option>
+                            <option>異業合作</option>
+                            <option>其它</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>內容</label>
+                        <textarea rows="5" placeholder="請描述您的需求..."></textarea>
+                    </div>
+                    <button type="submit" class="btn" style="width: 100%;">送出訊息</button>
+                </form>
+            </div>
+            <div class="contact-info-box">
+                <h2 style="margin-bottom: 2rem;">聯繫資訊</h2>
+                <div style="font-size: 1.1rem; color: var(--text-muted);">
+                    <p style="margin-bottom: 1.5rem;"><i class="fas fa-map-marker-alt" style="color: var(--primary-red); width: 30px;"></i> 台北市忠孝東路一段 100 號</p>
+                    <p style="margin-bottom: 1.5rem;"><i class="fas fa-phone" style="color: var(--primary-red); width: 30px;"></i> (02) 1234-5678</p>
+                    <p style="margin-bottom: 1.5rem;"><i class="fas fa-envelope" style="color: var(--primary-red); width: 30px;"></i> service@gdmoto.tw</p>
+                    <p style="margin-bottom: 1.5rem;"><i class="clock-o" style="color: var(--primary-red); width: 30px;"></i> 營業時間：週一至週五 10:00 - 20:00</p>
+                </div>
+                <div style="margin-top: 3rem; background: #222; height: 300px; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #444;">
+                    <span>[ Google 地圖預留區 ]</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div style="text-align: center; color: #444; font-size: 0.8rem;">
+            &copy; 2026 GD moto Scooter Performance.
+        </div>
+    </footer>
+</body>
+</html>

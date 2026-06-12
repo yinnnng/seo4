@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>產品詳情 | GD moto</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .product-detail-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+        .detail-img {
+            width: 100%;
+            border-radius: 12px;
+            border: 2px solid var(--primary-red);
+            box-shadow: 0 0 20px rgba(204,0,0,0.3);
+        }
+        .detail-info h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        .detail-price {
+            font-size: 2rem;
+            color: var(--primary-red);
+            font-weight: 800;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid #333;
+            padding-bottom: 1rem;
+        }
+        .feature-list {
+            margin: 2rem 0;
+            list-style: none;
+        }
+        .feature-list li {
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .feature-list li::before {
+            content: '✓';
+            color: var(--primary-red);
+            font-weight: bold;
+        }
+        .model-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+        .model-tag {
+            background: #333;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+        }
+        @media (max-width: 768px) {
+            .product-detail-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body class="carbon-bg">
+    <nav>
+        <a href="../index.html" class="logo racing-font">
+            <span style="color: white; background: var(--primary-red); padding: 0 5px;">GD</span> MOTO
+        </a>
+        <ul class="nav-links">
+            <li><a href="../index.html">首頁</a></li>
+            <li><a href="category.html?type=all">所有商品</a></li>
+            <li><a href="contact.html">聯絡我們</a></li>
+        </ul>
+    </nav>
+
+    <section class="section">
+        <div class="product-detail-container" id="product-detail">
+            <!-- Will be populated by JS -->
+        </div>
+    </section>
+
+    <section class="section" style="border-top: 1px solid #333;">
+        <h2 class="section-title">相關推薦</h2>
+        <div class="product-grid" id="related-products">
+            <!-- Will be populated by JS -->
+        </div>
+    </section>
+
+    <footer>
+        <div style="text-align: center; color: #444; font-size: 0.8rem;">
+            &copy; 2026 GD moto Scooter Performance.
+        </div>
+    </footer>
+
+    <script src="../js/data.js"></script>
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const id = parseInt(params.get('id'));
+        const product = products.find(p => p.id === id);
+
+        if (!product) {
+            window.location.href = '../index.html';
+        }
+
+        document.title = `${product.name} | GD moto`;
+
+        const detailContainer = document.getElementById('product-detail');
+        detailContainer.innerHTML = `
+            <div class="detail-visual">
+                <img src="${product.image}" alt="${product.name}" class="detail-img">
+            </div>
+            <div class="detail-info">
+                <span class="product-tag">${categories[product.category]}</span>
+                <h1>${product.name}</h1>
+                <p class="detail-price">${product.price}</p>
+                
+                <h3>產品特色</h3>
+                <ul class="feature-list">
+                    ${product.features.map(f => `<li>${f}</li>`).join('')}
+                </ul>
+
+                <h3>適用車款</h3>
+                <div class="model-tags">
+                    ${product.models.map(m => `<span class="model-tag">${m}</span>`).join('')}
+                </div>
+
+                <div style="margin-top: 3rem; display: flex; gap: 1rem;">
+                    <button class="btn" style="flex: 1; font-size: 1.2rem;" onclick="alert('已加入購物車！')">加入購物車</button>
+                    <button class="btn" style="background: transparent; border: 1px solid var(--primary-red);"><i class="far fa-heart"></i></button>
+                </div>
+            </div>
+        `;
+
+        // Related Products
+        const relatedContainer = document.getElementById('related-products');
+        const related = products.filter(p => p.category === product.category && p.id !== product.id).slice(0, 4);
+        
+        if (related.length === 0) {
+            products.slice(0, 4).forEach(p => renderCard(p, relatedContainer));
+        } else {
+            related.forEach(p => renderCard(p, relatedContainer));
+        }
+
+        function renderCard(p, container) {
+            const card = document.createElement('div');
+            card.className = 'product-card';
+            card.innerHTML = `
+                <img src="${p.image}" alt="${p.name}" class="product-img">
+                <div class="product-info">
+                    <span class="product-tag">${categories[p.category]}</span>
+                    <h3>${p.name}</h3>
+                    <p class="product-price">${p.price}</p>
+                    <a href="product.html?id=${p.id}" class="btn" style="width: 100%; text-align: center;">查看詳情</a>
+                </div>
+            `;
+            container.appendChild(card);
+        }
+    </script>
+</body>
+</html>

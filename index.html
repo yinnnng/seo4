@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GD moto | 呂佳穎速克達改裝精品專業電商</title>
+    <meta name="discription" content="打造屬於速克達騎士的改裝信仰。">
+    <meta name="keywords" content="GD moto,速克達改裝,機車改裝精品,速克達精品,機車精品">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <meta name="google-site-verification" content="3N4fhxF4nMBnulze3tMe7qb8Xu3W7z105M7ga2vpWJ0" />
+</head>
+<body class="carbon-bg">
+    <nav>
+        <a href="index.html" class="logo racing-font">
+            <span style="color: white; background: var(--primary-red); padding: 0 5px;">GD</span> MOTO
+        </a>
+        <ul class="nav-links">
+            <li><a href="index.html">首頁</a></li>
+            <li><a href="pages/about.html">公司簡介</a></li>
+            <li><a href="pages/category.html?type=exhaust">排氣系統</a></li>
+            <li><a href="pages/category.html?type=brake">煞車系統</a></li>
+            <li><a href="pages/contact.html">聯絡我們</a></li>
+        </ul>
+        <div class="nav-icons">
+            <a href="#" style="color: white; margin-left: 1rem;"><i class="fas fa-shopping-cart"></i></a>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-content">
+            <h1 class="racing-font">GD MOTO</h1>
+            <p>專業．性能．風格 — 你的改裝首選</p>
+            <a href="#featured" class="btn">探索精品</a>
+        </div>
+    </header>
+
+    <section class="section">
+        <h2 class="section-title">品牌精神</h2>
+        <div style="max-width: 800px; margin: 0 auto; text-align: center; color: var(--text-muted);">
+            <p>GD moto 致力於提供高品質、高效能的速克達改裝零件。我們深知每位車主對愛車的熱情，因此精選全球頂尖品牌與自主研發精品，為您打造獨一無二的駕馭體驗。</p>
+        </div>
+    </section>
+
+    <section class="section" id="featured">
+        <h2 class="section-title">熱門商品區</h2>
+        <div class="product-grid" id="hot-products">
+            <!-- Will be populated by JS -->
+        </div>
+    </section>
+
+    <section class="section" style="background: rgba(0,0,0,0.5);">
+        <h2 class="section-title">商品分類</h2>
+        <div class="product-grid" style="grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));">
+            <a href="pages/category.html?type=exhaust" class="btn" style="text-align: center; padding: 2rem 1rem;">排氣系統</a>
+            <a href="pages/category.html?type=brake" class="btn" style="text-align: center; padding: 2rem 1rem;">煞車系統</a>
+            <a href="pages/category.html?type=wheel" class="btn" style="text-align: center; padding: 2rem 1rem;">輪框改裝</a>
+            <a href="pages/category.html?type=frame" class="btn" style="text-align: center; padding: 2rem 1rem;">車架與排骨</a>
+        </div>
+    </section>
+    <div style="font-family: Arial, 'Noto Sans TC', sans-serif; line-height: 1.9; color: #ffffff; font-size: 16px;">
+
+
+
+    </div>
+    <footer>
+        <div class="footer-grid">
+            <div class="contact-info">
+                <h3 class="racing-font">GD MOTO</h3>
+                <p><i class="fas fa-map-marker-alt"></i> 台北市忠孝東路... (範例地址)</p>
+                <p><i class="fas fa-phone"></i> 02-1234-5678</p>
+                <p><i class="fas fa-envelope"></i> service@gdmoto.tw</p>
+            </div>
+            <div>
+                <h4>快速連結</h4>
+                <ul style="list-style: none; margin-top: 1rem;">
+                    <li><a href="pages/about.html" style="color: var(--text-muted); text-decoration: none;">關於我們</a></li>
+                    <li><a href="pages/contact.html" style="color: var(--text-muted); text-decoration: none;">聯絡我們</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>關注我們</h4>
+                <div style="display: flex; gap: 1rem; margin-top: 1rem; font-size: 1.5rem;">
+                    <a href="#" style="color: white;"><i class="fab fa-facebook"></i></a>
+                    <a href="#" style="color: white;"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        <div style="text-align: center; margin-top: 3rem; color: #444; font-size: 0.8rem;">
+            &copy; 2026 GD moto Scooter Performance. All rights reserved.
+        </div>
+    </footer>
+
+    <script src="js/data.js"></script>
+    <script>
+        // Populate Hot Products (first 4 items)
+        const container = document.getElementById('hot-products');
+        products.slice(0, 4).forEach(product => {
+            const card = document.createElement('div');
+            card.className = 'product-card';
+            card.innerHTML = `
+                <img src="${product.image}" alt="${product.name}" class="product-img">
+                <div class="product-info">
+                    <span class="product-tag">${categories[product.category]}</span>
+                    <h3>${product.name}</h3>
+                    <p class="product-price">${product.price}</p>
+                    <a href="pages/product.html?id=${product.id}" class="btn" style="width: 100%; text-align: center;">查看詳情</a>
+                </div>
+            `;
+            container.appendChild(card);
+        });
+    </script>
+</body>
+</html>

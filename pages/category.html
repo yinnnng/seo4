@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>商品分類 | GD moto</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="carbon-bg">
+    <nav>
+        <a href="../index.html" class="logo racing-font">
+            <span style="color: white; background: var(--primary-red); padding: 0 5px;">GD</span> MOTO
+        </a>
+        <ul class="nav-links">
+            <li><a href="../index.html">首頁</a></li>
+            <li><a href="about.html">公司簡介</a></li>
+            <li><a href="category.html?type=exhaust">排氣系統</a></li>
+            <li><a href="category.html?type=brake">煞車系統</a></li>
+            <li><a href="contact.html">聯絡我們</a></li>
+        </ul>
+    </nav>
+
+    <header class="section" style="padding-bottom: 0;">
+        <h1 id="category-title" class="section-title">商品分類</h1>
+        <div style="display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; margin-bottom: 3rem;">
+            <a href="category.html?type=all" class="btn" style="padding: 0.5rem 1rem;">全部</a>
+            <a href="category.html?type=exhaust" class="btn" style="padding: 0.5rem 1rem;">排氣系統</a>
+            <a href="category.html?type=frame" class="btn" style="padding: 0.5rem 1rem;">車架與排骨</a>
+            <a href="category.html?type=brake" class="btn" style="padding: 0.5rem 1rem;">煞車系統</a>
+            <a href="category.html?type=wheel" class="btn" style="padding: 0.5rem 1rem;">輪框改裝</a>
+            <a href="category.html?type=accessories" class="btn" style="padding: 0.5rem 1rem;">騎士配件</a>
+            <a href="category.html?type=exterior" class="btn" style="padding: 0.5rem 1rem;">外觀精品</a>
+            <a href="category.html?type=others" class="btn" style="padding: 0.5rem 1rem;">其它類</a>
+        </div>
+    </header>
+
+    <section class="section">
+        <div class="product-grid" id="category-products">
+            <!-- Will be populated by JS -->
+        </div>
+    </section>
+
+    <footer>
+        <div style="text-align: center; color: #444; font-size: 0.8rem;">
+            &copy; 2026 GD moto Scooter Performance.
+        </div>
+    </footer>
+
+    <script src="../js/data.js"></script>
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const type = params.get('type') || 'all';
+        
+        document.getElementById('category-title').innerText = type === 'all' ? '所有商品' : categories[type];
+
+        const container = document.getElementById('category-products');
+        const filtered = type === 'all' ? products : products.filter(p => p.category === type);
+
+        if (filtered.length === 0) {
+            container.innerHTML = '<p style="text-align: center; grid-column: 1/-1;">目前此分類尚無商品</p>';
+        } else {
+            filtered.forEach(product => {
+                const card = document.createElement('div');
+                card.className = 'product-card';
+                card.innerHTML = `
+                    <img src="${product.image}" alt="${product.name}" class="product-img">
+                    <div class="product-info">
+                        <span class="product-tag">${categories[product.category]}</span>
+                        <h3>${product.name}</h3>
+                        <p class="product-price">${product.price}</p>
+                        <a href="product.html?id=${product.id}" class="btn" style="width: 100%; text-align: center;">查看詳情</a>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+    </script>
+</body>
+</html>
